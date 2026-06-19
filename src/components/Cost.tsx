@@ -34,7 +34,7 @@ export default function Cost() {
             가맹금·보증금 1,080만원 + 시설·초도물품 등으로 구성됩니다. 보증금은 계약 종료 시
             반환되며, 보증보험으로 대체할 수 있습니다.
           </p>
-          <a href="#inquiry" className="btn btn-primary">투자 상담 받기</a>
+          <a href="#inquiry" className="btn btn-primary">가맹 상담 받기</a>
         </aside>
       </div>
     </section>
