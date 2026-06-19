@@ -28,3 +28,8 @@ npm-debug.log*
 
 # 빌드 인포
 *.tsbuildinfo
+
+# 캡처/작업 이미지
+image.png
+_*.png
+_*.cjs

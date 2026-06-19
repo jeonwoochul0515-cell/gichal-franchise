@@ -9,6 +9,7 @@ import Process from './components/Process'
 import Support from './components/Support'
 import StoreMap from './components/StoreMap'
 import Instagram from './components/Instagram'
+import FAQ from './components/FAQ'
 import Inquiry from './components/Inquiry'
 import Footer from './components/Footer'
 
@@ -26,6 +27,7 @@ export default function App() {
         <Support />
         <StoreMap />
         <Instagram />
+        <FAQ />
         <Inquiry />
       </main>
       <Footer />
