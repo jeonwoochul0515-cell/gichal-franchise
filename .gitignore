@@ -1,0 +1,27 @@
+# 의존성
+node_modules
+dist
+dist-ssr
+
+# 로그
+*.log
+npm-debug.log*
+
+# 에디터/OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# 작업용 원본 자료 (배포 불필요)
+/*.hwp
+/_hwp_html/
+/_extract.py
+정보공개서.txt
+정보공개서_표포함.txt
+/42초부터*.mp4
+/성인1인*.jpg
+/찹쌀탕수육*.png
+/레몬크림탕수육*.jpg
+/레몬간장탕수육*.jpg
+/깐쇼새우*.jpg
+/KakaoTalk_*.jpg

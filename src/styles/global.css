@@ -1,0 +1,122 @@
+/* 전역 스타일 및 디자인 토큰 — 중식 레드/골드 + 다크 베이스 */
+:root {
+  --red: #b8232b;
+  --red-deep: #8a161c;
+  --gold: #f5c542;
+  --gold-soft: #e8b94a;
+  --ink: #1a1614;
+  --ink-soft: #2a2320;
+  --cream: #fbf6ec;
+  --paper: #ffffff;
+  --gray: #6b6256;
+  --line: rgba(0, 0, 0, 0.08);
+  --maxw: 1180px;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
+  --radius: 18px;
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.display {
+  font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+}
+
+.section {
+  padding: clamp(64px, 9vw, 120px) 20px;
+}
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.eyebrow {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: var(--red);
+  background: rgba(184, 35, 43, 0.08);
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4.2vw, 2.9rem);
+  margin: 0 0 14px;
+}
+.section-sub {
+  color: var(--gray);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.center {
+  text-align: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 15px 28px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-primary {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(184, 35, 43, 0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: var(--red-deep);
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 10px 26px rgba(245, 197, 66, 0.4);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 18px;
+  }
+}
