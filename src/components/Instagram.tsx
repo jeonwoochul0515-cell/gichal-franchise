@@ -18,19 +18,19 @@ declare global {
   }
 }
 
-// 외부 스크립트를 1회만 로드
-function loadScript(id: string, src: string, onLoad?: () => void) {
-  const existing = document.getElementById(id) as HTMLScriptElement | null
+// 외부 스크립트를 1회만 로드 (module=true면 type="module")
+function loadScript(id: string, src: string, opts: { module?: boolean; onLoad?: () => void } = {}) {
+  const existing = document.getElementById(id)
   if (existing) {
-    onLoad?.()
+    opts.onLoad?.()
     return
   }
   const s = document.createElement('script')
   s.id = id
   s.async = true
-  s.type = 'module'
+  if (opts.module) s.type = 'module'
   s.src = src
-  if (onLoad) s.onload = onLoad
+  if (opts.onLoad) s.onload = opts.onLoad
   document.body.appendChild(s)
 }
 
@@ -40,12 +40,21 @@ export default function Instagram() {
 
   useEffect(() => {
     if (useBehold) {
-      loadScript('behold-widget-js', 'https://w.behold.so/widget.js')
-    } else if (useManual) {
-      loadScript('instagram-embed-js', 'https://www.instagram.com/embed.js', () =>
-        window.instgrm?.Embeds.process(),
-      )
+      loadScript('behold-widget-js', 'https://w.behold.so/widget.js', { module: true })
+      return
     }
+    if (!useManual) return
+
+    // 이미 로드돼 있으면 바로 처리, 아니면 스크립트 로드 후 처리
+    const process = () => window.instgrm?.Embeds.process()
+    if (window.instgrm) {
+      process()
+    } else {
+      loadScript('instagram-embed-js', 'https://www.instagram.com/embed.js', { onLoad: process })
+    }
+    // 렌더 타이밍 보정용 재시도
+    const t = setTimeout(process, 1200)
+    return () => clearTimeout(t)
   }, [useBehold, useManual])
 
   return (
@@ -68,7 +77,12 @@ export default function Instagram() {
               className="instagram-media"
               data-instgrm-permalink={url}
               data-instgrm-version="14"
-            />
+              style={{ background: '#fff', border: 0, borderRadius: 14, margin: 0, width: '100%' }}
+            >
+              <a href={url} target="_blank" rel="noreferrer">
+                인스타그램에서 게시물 보기
+              </a>
+            </blockquote>
           ))}
         </div>
       ) : (
