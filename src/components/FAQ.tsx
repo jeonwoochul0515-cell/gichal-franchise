@@ -1,8 +1,9 @@
 // 자주 묻는 질문 섹션 — 가맹 관련 Q&A (사용자 + GEO/FAQPage 노출용)
 import { useState } from 'react'
-import { faqs } from '../data/content'
+import { useContent } from '../content/ContentProvider'
 
 export default function FAQ() {
+  const { faqs } = useContent()
   const [open, setOpen] = useState<number | null>(0)
 
   return (
@@ -14,7 +15,7 @@ export default function FAQ() {
       </div>
       <div className="container faq-list">
         {faqs.map((f, i) => (
-          <div className={`faq-item ${open === i ? 'is-open' : ''}`} key={f.q}>
+          <div className={`faq-item ${open === i ? 'is-open' : ''}`} key={f.id}>
             <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
               <span>{f.q}</span>
               <i aria-hidden>+</i>

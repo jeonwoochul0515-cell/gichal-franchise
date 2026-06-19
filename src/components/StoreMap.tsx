@@ -1,25 +1,36 @@
 // 매장 안내 — Leaflet(OpenStreetMap) 지도 + 매장 리스트. API 키 불필요
 import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
-import { stores } from '../data/stores'
+import { useContent } from '../content/ContentProvider'
 
 export default function StoreMap() {
+  const { stores } = useContent()
   const mapEl = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
   const markersRef = useRef<L.Marker[]>([])
   const [active, setActive] = useState(0)
 
+  // 지도 1회 초기화
   useEffect(() => {
     if (!mapEl.current || mapRef.current) return
-
-    const map = L.map(mapEl.current, { scrollWheelZoom: false }).setView([35.18, 129.0], 11)
+    const map = L.map(mapEl.current, { scrollWheelZoom: false }).setView([35.7, 129.0], 8)
     mapRef.current = map
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap',
       maxZoom: 19,
     }).addTo(map)
+    return () => {
+      map.remove()
+      mapRef.current = null
+    }
+  }, [])
 
+  // 매장 변경 시 마커 재생성
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || stores.length === 0) return
+
+    markersRef.current.forEach((m) => m.remove())
     const icon = (label: string) =>
       L.divIcon({
         className: 'store-pin',
@@ -28,7 +39,6 @@ export default function StoreMap() {
         iconAnchor: [17, 44],
         popupAnchor: [0, -42],
       })
-
     markersRef.current = stores.map((s, i) => {
       const m = L.marker([s.lat, s.lng], { icon: icon(s.tag || s.name.slice(0, 2)) })
         .addTo(map)
@@ -36,15 +46,10 @@ export default function StoreMap() {
       m.on('click', () => setActive(i))
       return m
     })
-
-    const bounds = L.latLngBounds(stores.map((s) => [s.lat, s.lng] as [number, number]))
-    map.fitBounds(bounds, { padding: [50, 50] })
-
-    return () => {
-      map.remove()
-      mapRef.current = null
-    }
-  }, [])
+    map.fitBounds(L.latLngBounds(stores.map((s) => [s.lat, s.lng] as [number, number])), {
+      padding: [50, 50],
+    })
+  }, [stores])
 
   const focus = (i: number) => {
     setActive(i)
@@ -65,7 +70,7 @@ export default function StoreMap() {
       <div className="container store-layout">
         <ul className="store-list">
           {stores.map((s, i) => (
-            <li key={s.name}>
+            <li key={s.id}>
               <button
                 className={`store-item ${active === i ? 'is-active' : ''}`}
                 onClick={() => focus(i)}

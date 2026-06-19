@@ -1,0 +1,7 @@
+name = "gichal-franchise"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-11-01"
+
+[[kv_namespaces]]
+binding = "CONTENT"
+id = "8fd6646d60684bdc8099be6cd3490d29"

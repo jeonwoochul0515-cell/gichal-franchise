@@ -1,7 +1,8 @@
 // SNS 섹션 — Behold 위젯(자동 최신글) → 수동 oEmbed → 프로필 폴백 순으로 노출
 import { useEffect } from 'react'
 import { brand } from '../data/content'
-import { beholdFeedId, instagramCount, instagramPosts } from '../data/instagram'
+import { beholdFeedId, instagramCount } from '../data/instagram'
+import { useContent } from '../content/ContentProvider'
 
 declare global {
   interface Window {
@@ -35,6 +36,7 @@ function loadScript(id: string, src: string, opts: { module?: boolean; onLoad?: 
 }
 
 export default function Instagram() {
+  const { instagram: instagramPosts } = useContent()
   const useBehold = beholdFeedId.length > 0
   const useManual = !useBehold && instagramPosts.length > 0
 
@@ -55,7 +57,7 @@ export default function Instagram() {
     // 렌더 타이밍 보정용 재시도
     const t = setTimeout(process, 1200)
     return () => clearTimeout(t)
-  }, [useBehold, useManual])
+  }, [useBehold, useManual, instagramPosts.join(',')])
 
   return (
     <section className="section insta" id="sns">

@@ -1,7 +1,8 @@
-// 시그니처 메뉴 갤러리 — 차별화 메뉴를 매출 경쟁력 근거로 제시
-import { signatureMenus } from '../data/content'
+// 시그니처 메뉴 갤러리 — 차별화 메뉴를 매출 경쟁력 근거로 제시 (콘텐츠 동적 로드)
+import { useContent } from '../content/ContentProvider'
 
 export default function Menus() {
+  const { menus: signatureMenus } = useContent()
   return (
     <section className="section menus" id="menus">
       <div className="container center">
@@ -13,7 +14,7 @@ export default function Menus() {
       </div>
       <div className="container menu-grid">
         {signatureMenus.map((m) => (
-          <figure key={m.name} className={`menu-card ${m.span2 ? 'menu-card--wide' : ''}`}>
+          <figure key={m.id} className={`menu-card ${m.span2 ? 'menu-card--wide' : ''}`}>
             <img src={m.img} alt={m.name} loading="lazy" />
             <figcaption>
               <h3>{m.name}</h3>
