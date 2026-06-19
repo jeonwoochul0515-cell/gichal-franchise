@@ -690,6 +690,34 @@
   font-size: 0.78rem;
   text-align: center;
 }
+.inquiry-form__note--err {
+  color: var(--red);
+  font-weight: 700;
+}
+.inquiry-done {
+  text-align: center;
+  align-content: center;
+  min-height: 320px;
+}
+.inquiry-done__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 2rem;
+  display: grid;
+  place-items: center;
+}
+.inquiry-done h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+}
+.inquiry-done p {
+  margin: 0 0 22px;
+  color: var(--gray);
+}
 
 /* ===== Footer ===== */
 .footer {

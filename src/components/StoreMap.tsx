@@ -30,7 +30,7 @@ export default function StoreMap() {
       })
 
     markersRef.current = stores.map((s, i) => {
-      const m = L.marker([s.lat, s.lng], { icon: icon(s.tag || '점') })
+      const m = L.marker([s.lat, s.lng], { icon: icon(s.tag || s.name.slice(0, 2)) })
         .addTo(map)
         .bindPopup(`<b>${s.name}</b><br>${s.address}`)
       m.on('click', () => setActive(i))
@@ -58,7 +58,9 @@ export default function StoreMap() {
       <div className="container center">
         <span className="eyebrow">STORES</span>
         <h2 className="section-title display">매장 안내</h2>
-        <p className="section-sub">현재 운영·오픈 중인 기찰반점 매장입니다. (지점 확대 중)</p>
+        <p className="section-sub">
+          부산·경남·경북으로 확장 중인 기찰반점 직영·가맹점입니다. (현재 {stores.length}개 매장)
+        </p>
       </div>
       <div className="container store-layout">
         <ul className="store-list">
