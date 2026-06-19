@@ -598,6 +598,12 @@
   min-width: 280px !important;
   margin: 0 !important;
 }
+.insta-behold {
+  margin-top: 44px;
+  --behold-gap: 18px;
+  --behold-row-gap: 18px;
+  --behold-border-radius: 14px;
+}
 .insta-fallback {
   margin-top: 36px;
 }
