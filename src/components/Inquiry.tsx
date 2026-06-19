@@ -4,6 +4,9 @@ import { brand } from '../data/content'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
+// Web3Forms 액세스 키 (공개돼도 안전 — 이 키로는 cs92@naver.com로만 발송됨)
+const WEB3FORMS_KEY = 'e717bf21-6e15-4add-bf74-8497b9b00c92'
+
 export default function Inquiry() {
   const [form, setForm] = useState({ name: '', phone: '', region: '', message: '' })
   const [status, setStatus] = useState<Status>('idle')
@@ -16,12 +19,21 @@ export default function Inquiry() {
     if (status === 'sending') return
     setStatus('sending')
     try {
-      const res = await fetch('/api/inquiry', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `[기찰반점 가맹문의] ${form.name} / ${form.region || '지역미기재'}`,
+          from_name: '기찰반점 가맹문의',
+          성함: form.name,
+          연락처: form.phone,
+          희망지역: form.region || '-',
+          문의내용: form.message || '-',
+        }),
       })
-      if (!res.ok) throw new Error('send failed')
+      const data = await res.json()
+      if (!data.success) throw new Error('send failed')
       setStatus('sent')
       setForm({ name: '', phone: '', region: '', message: '' })
     } catch {

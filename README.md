@@ -51,6 +51,7 @@ npm run preview  # 빌드 결과 미리보기
 4. Save and Deploy
 
 ## 가맹문의 폼
-현재는 정적 배포 기준으로 전송 시 메일 작성창(`mailto`)이 열립니다.
-실시간 접수가 필요하면 Cloudflare Pages Functions 또는 Formspree 연동으로 확장하세요.
-(`src/components/Inquiry.tsx`)
+**Web3Forms**로 제출 시 cs92@naver.com에 메일이 발송됩니다. (백엔드 불필요)
+- 액세스 키는 `src/components/Inquiry.tsx`의 `WEB3FORMS_KEY` 상수에 있습니다.
+- 이 키는 공개돼도 안전합니다(해당 키로는 등록된 cs92@naver.com로만 발송됨).
+- 받는 주소를 바꾸려면 https://web3forms.com 에서 새 키를 발급해 교체하세요.
