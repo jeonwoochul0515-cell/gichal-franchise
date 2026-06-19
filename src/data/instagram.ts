@@ -9,7 +9,7 @@ export const instagramCount = 3
 
 // [2순위] 수동 oEmbed용 게시물 URL (자동 갱신 안 됨 — 새 글마다 교체+재배포 필요)
 export const instagramPosts: string[] = [
-  'https://www.instagram.com/reel/DZmSfF6zVWb/',
+  'https://www.instagram.com/reel/DZb7KRyzu31/',
   'https://www.instagram.com/reel/DZd3rFizYxZ/',
   'https://www.instagram.com/reel/DZcKsnMz_OK/',
 ]
