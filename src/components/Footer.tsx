@@ -37,7 +37,10 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <div className="footer__copy">© {new Date().getFullYear()} {brand.hq}. All rights reserved.</div>
+      <div className="footer__copy">
+        © {new Date().getFullYear()} {brand.hq}. All rights reserved.
+        <a href="/admin" className="footer__admin">관리자</a>
+      </div>
     </footer>
   )
 }
