@@ -612,6 +612,119 @@
   margin-bottom: 18px;
 }
 
+/* ===== CEO Message ===== */
+.ceo {
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.ceo::before {
+  content: '"';
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  font-family: 'Black Han Sans', serif;
+  font-size: 22rem;
+  line-height: 1;
+  color: rgba(245, 197, 66, 0.07);
+  pointer-events: none;
+}
+.ceo-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  align-items: start;
+}
+.ceo-quote {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  margin: 16px 0 0;
+  color: #fff;
+}
+.ceo-quote::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  background: var(--gold);
+  margin-top: 22px;
+  border-radius: 2px;
+}
+.ceo-body p {
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.9;
+  margin: 0 0 18px;
+  font-size: 1.02rem;
+}
+.ceo-body strong {
+  color: var(--gold);
+}
+.ceo-sign {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ceo-sign img {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+}
+.ceo-sign span {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+}
+.ceo-sign strong {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.ceo-stats {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ceo-stats div {
+  text-align: center;
+}
+.ceo-stats strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--gold);
+}
+.ceo-stats span {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 860px) {
+  .ceo-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .ceo-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+  .ceo-stats div {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+  }
+  .ceo-stats strong {
+    font-size: 1.4rem;
+  }
+}
+
 /* ===== FAQ ===== */
 .faq {
   background: var(--cream);

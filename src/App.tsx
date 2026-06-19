@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Strengths from './components/Strengths'
 import Menus from './components/Menus'
 import DualModel from './components/DualModel'
+import CeoMessage from './components/CeoMessage'
 import Cost from './components/Cost'
 import Process from './components/Process'
 import Support from './components/Support'
@@ -22,6 +23,7 @@ export default function App() {
         <Strengths />
         <Menus />
         <DualModel />
+        <CeoMessage />
         <Cost />
         <Process />
         <Support />
