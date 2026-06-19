@@ -103,7 +103,7 @@ ${JSON.stringify(current)}`
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
-      'x-api-key': env.ANTHROPIC_API_KEY,
+      'x-api-key': env.ANTHROPIC_API_KEY.trim(),
       'anthropic-version': '2023-06-01',
       'content-type': 'application/json',
     },
