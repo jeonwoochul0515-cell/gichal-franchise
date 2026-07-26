@@ -2,7 +2,7 @@
 import { requireAuth, json, type Env } from '../../_lib/auth'
 import { loadContent, saveContent, type SiteContent } from '../../_lib/defaultContent'
 
-const MODEL = 'claude-sonnet-4-6'
+const MODEL = 'claude-sonnet-5'
 
 const CONTENT_SCHEMA = {
   type: 'object',
